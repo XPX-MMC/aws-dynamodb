@@ -12,14 +12,14 @@ const main = async () => {
 
     try {
         // ADD/UPDATE
-        //await addUpdateCustomer(customer)
+        await addUpdateCustomer(customer)
         
         // GET
         // const res = await getCustomer(1) // JS
         // console.log(res)
 
-        const res = await getCustomersForAge(17) // PartiQL
-        console.log(res)
+        // const res = await getCustomersForAge(17) // PartiQL
+        // console.log(res)
 
         // DELETE
         // const res = await deleteCustomer(2)
