@@ -15,14 +15,15 @@ import { ExecuteStatementCommand, DynamoDBDocumentClient} from "@aws-sdk/lib-dyn
 const marshallOptions = {
     convertEmptyValues: false, 
     removeUndefinedValues: false, 
-    convertClassInstanceToMap: false, 
+    convertClassInstanceToMap: false
 }
 const unmarshallOptions = {
-    wrapNumbers: false, 
+    wrapNumbers: false
 }
-const translateConfig = { marshallOptions, unmarshallOptions };
-const ddbDocClient = DynamoDBDocumentClient.from(ddbClient, translateConfig);
+const translateConfig = { marshallOptions, unmarshallOptions }
+const ddbDocClient = DynamoDBDocumentClient.from(ddbClient, translateConfig)
 //
+
 const TABLE_NAME = 'Customer'
 
 //
