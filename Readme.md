@@ -1,0 +1,12 @@
+# AWS DynamoDB SDK Version 3
+Simple project that illustrates how to read/write from/to DynamoDB using version 3 of the aws-sdk.
+
+# Getting Started
+- Clone this repo
+- Install dependencies: `npm install`
+- Ensure that a Customer table exists in AWS (partition key: customerId (number))
+
+# Notes
+- https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/javascript_dynamodb_code_examples.html
+
+- https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/dynamodb/src
