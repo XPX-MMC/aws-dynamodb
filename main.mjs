@@ -3,10 +3,10 @@ import { addUpdateCustomer, getCustomer, deleteCustomer, getCustomersForAge } fr
 const main = async () => {
     
     const customer = {
-        customerId: 1,
-        firstName: "Alice", 
-        lastName: "Jones",
-        age: 17, 
+        customerId: 2,
+        firstName: "Bob", 
+        lastName: "Smith",
+        age: 18, 
         zip: 14580
     }
 

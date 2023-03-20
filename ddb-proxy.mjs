@@ -9,8 +9,6 @@
 
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb"
 import { PutCommand, GetCommand, DeleteCommand } from "@aws-sdk/lib-dynamodb"
-const ddbClient = new DynamoDBClient({ region: "us-east-1" })
-//
 import { ExecuteStatementCommand, DynamoDBDocumentClient} from "@aws-sdk/lib-dynamodb"
 const marshallOptions = {
     convertEmptyValues: false, 
@@ -21,8 +19,8 @@ const unmarshallOptions = {
     wrapNumbers: false
 }
 const translateConfig = { marshallOptions, unmarshallOptions }
+const ddbClient = new DynamoDBClient({ region: "us-east-1" })
 const ddbDocClient = DynamoDBDocumentClient.from(ddbClient, translateConfig)
-//
 
 const TABLE_NAME = 'Customer'
 
