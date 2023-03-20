@@ -10,11 +10,29 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb"
 import { PutCommand, GetCommand, DeleteCommand } from "@aws-sdk/lib-dynamodb"
 const ddbClient = new DynamoDBClient({ region: "us-east-1" })
+//
+import { ExecuteStatementCommand, DynamoDBDocumentClient} from "@aws-sdk/lib-dynamodb"
+const marshallOptions = {
+    convertEmptyValues: false, 
+    removeUndefinedValues: false, 
+    convertClassInstanceToMap: false, 
+}
+const unmarshallOptions = {
+    wrapNumbers: false, 
+}
+const translateConfig = { marshallOptions, unmarshallOptions };
+const ddbDocClient = DynamoDBDocumentClient.from(ddbClient, translateConfig);
+//
+const TABLE_NAME = 'Customer'
+
+//
+// JavaScript statements
+//
 
 export const addUpdateCustomer = async (item) => {
     try {
         const params = {
-            TableName: 'Customer',
+            TableName: TABLE_NAME,
             Item: item
         }
         const data = await ddbClient.send(new PutCommand(params));
@@ -28,7 +46,7 @@ export const addUpdateCustomer = async (item) => {
 export const getCustomer = async (customerId) => {
     try {
         const params = {
-            TableName: 'Customer',
+            TableName: TABLE_NAME,
             Key: { "customerId" : customerId}
         }
         const data = await ddbClient.send(new GetCommand(params))
@@ -42,7 +60,7 @@ export const getCustomer = async (customerId) => {
 export const deleteCustomer = async (customerId) => {
     try {
         const params = {
-            TableName: 'Customer',
+            TableName: TABLE_NAME,
             Key: { "customerId" : customerId}
         };
         await ddbClient.send(new DeleteCommand(params))
@@ -53,3 +71,19 @@ export const deleteCustomer = async (customerId) => {
     }
 }
 
+//
+// PartiQL
+// 
+
+export const getCustomersForAge = async (age) => {
+    try {
+        const params = {
+            Statement: `select * from Customer where age = ${age}`
+        }
+        const data = await ddbDocClient.send(new ExecuteStatementCommand(params))
+        return data.Items
+    }
+    catch(err) {
+        console.log(err.stack)
+    }
+}
